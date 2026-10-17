@@ -2,7 +2,8 @@
 
 一个零依赖、零构建的静态站点，包含个人介绍页和一个可直接使用的任务清单小应用。
 
-- 线上地址：`https://你的用户名.github.io/my-portfolio/`（部署后替换）
+- 线上地址：https://milky-rivers.github.io/my-portfolio/
+- 源码地址：https://github.com/Milky-Rivers/my-portfolio
 - 技术栈：HTML / CSS / 原生 JavaScript，部署在 GitHub Pages
 
 ## 目录结构
@@ -29,12 +30,10 @@ python -m http.server 8000
 
 | 占位内容 | 换成 |
 | --- | --- |
-| `张明` | 你的名字 |
-| `ZM` | 你的名字缩写 |
-| `your-username` | 你的 GitHub 用户名 |
-| `zm@example.com` | 你的邮箱 |
+| `金俊宇` | 你的名字 |
+| `JJY` | 你的名字缩写 |
+| `Milky-Rivers` | 你的 GitHub 用户名 |
 | `上海` | 你所在的城市 |
-| `前端开发` | 你的求职方向 |
 
 替换方式：用编辑器的全局搜索替换（VS Code 里按 `Ctrl+Shift+H`），把上表里的占位内容逐个换掉。
 
