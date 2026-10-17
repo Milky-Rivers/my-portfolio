@@ -34,6 +34,7 @@ python -m http.server 8000
 | `JJY` | 你的名字缩写 |
 | `Milky-Rivers` | 你的 GitHub 用户名 |
 | `上海` | 你所在的城市 |
+| `320908381@qq.com` | 你的联系邮箱 |
 
 替换方式：用编辑器的全局搜索替换（VS Code 里按 `Ctrl+Shift+H`），把上表里的占位内容逐个换掉。
 
