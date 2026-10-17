@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>张明 · 前端开发作品集</title>
+  <meta name="description" content="张明的个人作品集：原生 JavaScript 小应用与前端实践，记录一个页面从想法到上线的过程。">
+  <meta name="theme-color" content="#f7f8f6">
+  <meta property="og:title" content="张明 · 前端开发作品集">
+  <meta property="og:description" content="原生 JavaScript 小应用与前端实践。">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- 头部：改成你的名字和 GitHub 地址 -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">ZM</span>
+        <span class="brand-name">张明</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#projects">项目</a>
+        <a href="#skills">技能</a>
+        <a href="#contact">联系</a>
+        <a class="nav-gh" href="https://github.com/your-username" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+            <path d="M9 18c-4.51 2-5-2-7-2"/>
+          </svg>
+          GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">前端 / Web 开发 · 求职中</p>
+          <h1>张明<span class="dot">.</span></h1>
+          <p class="lede">我写前端，也在意一个页面从第一行代码到真正上线之间发生的所有事：结构、性能、还有别人用起来顺不顺手。</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">
+              查看项目
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="demo.html">
+              试用在线 Demo
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            </a>
+          </div>
+          <dl class="quick-facts">
+            <div><dt>城市</dt><dd>上海</dd></div>
+            <div><dt>方向</dt><dd>前端开发</dd></div>
+            <div><dt>状态</dt><dd>可立即到岗</dd></div>
+          </dl>
+        </div>
+
+        <aside class="hero-panel" aria-label="个人概要">
+          <div class="panel-head">
+            <span class="dot-row" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span>profile.json</span>
+          </div>
+          <pre><code><span class="p">{</span>
+  <span class="k">"name"</span><span class="p">:</span> <span class="s">"张明"</span><span class="p">,</span>
+  <span class="k">"role"</span><span class="p">:</span> <span class="s">"前端开发"</span><span class="p">,</span>
+  <span class="k">"city"</span><span class="p">:</span> <span class="s">"上海"</span><span class="p">,</span>
+  <span class="k">"stack"</span><span class="p">:</span> <span class="p">[</span><span class="s">"HTML"</span><span class="p">,</span> <span class="s">"CSS"</span><span class="p">,</span> <span class="s">"JavaScript"</span><span class="p">],</span>
+  <span class="k">"focus"</span><span class="p">:</span> <span class="s">"把界面做到可用、可维护"</span><span class="p">,</span>
+  <span class="k">"status"</span><span class="p">:</span> <span class="s">"open to work"</span>
+<span class="p">}</span></code></pre>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>精选项目</h2>
+          <p>两个可以直接打开、也能讲清楚取舍的小作品。点进去都能上手操作。</p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project">
+            <a class="thumb" href="demo.html" aria-label="打开任务清单 Demo">
+              <img src="assets/demo-shot.png" alt="任务清单 Demo 的界面截图" width="1280" height="800" loading="lazy">
+            </a>
+            <div class="project-body">
+              <h3>任务清单 <span class="badge">可直接试用</span></h3>
+              <p>原生 JavaScript 写的任务管理：添加、勾选、筛选、删除，数据存在浏览器本地，刷新不丢。</p>
+              <ul class="tags"><li>JavaScript</li><li>localStorage</li><li>无障碍</li></ul>
+              <div class="project-links">
+                <a href="demo.html">打开 Demo
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                <a href="https://github.com/your-username/my-portfolio" target="_blank" rel="noopener">源码</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <a class="thumb" href="index.html" aria-label="查看本站首页">
+              <img src="assets/site-shot.png" alt="个人作品集站点首页截图" width="1280" height="800" loading="lazy">
+            </a>
+            <div class="project-body">
+              <h3>个人作品集站点</h3>
+              <p>零依赖、零构建的静态站点，手写响应式布局，部署在 GitHub Pages，改完推上去就生效。</p>
+              <ul class="tags"><li>HTML</li><li>CSS Grid</li><li>GitHub Pages</li></ul>
+              <div class="project-links">
+                <a href="index.html">打开首页
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                <a href="https://github.com/your-username/my-portfolio" target="_blank" rel="noopener">源码</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>技能</h2>
+          <p>不堆名词，只写我现在真的能动手做的部分。</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-col">
+            <h3>前端基础</h3>
+            <ul>
+              <li>语义化 HTML 与可访问性</li>
+              <li>Flex / Grid 响应式布局</li>
+              <li>原生 JavaScript 与 DOM</li>
+              <li>事件委托与状态管理</li>
+            </ul>
+          </div>
+          <div class="skill-col">
+            <h3>工具与协作</h3>
+            <ul>
+              <li>Git 提交与分支</li>
+              <li>GitHub Pull Request 流程</li>
+              <li>浏览器 DevTools 调试</li>
+              <li>GitHub Pages 部署</li>
+            </ul>
+          </div>
+          <div class="skill-col">
+            <h3>正在补</h3>
+            <ul>
+              <li>TypeScript 类型设计</li>
+              <li>React 组件化开发</li>
+              <li>接口联调与数据库基础</li>
+              <li>性能与首屏优化</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <h2>聊聊？</h2>
+          <p>如果你在找一名愿意把细节做好的开发者，欢迎发邮件。</p>
+          <div class="email-row">
+            <a class="email" href="mailto:zm@example.com">zm@example.com</a>
+            <button class="copy-btn" id="copyEmail" type="button" data-email="zm@example.com">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <span>复制</span>
+            </button>
+          </div>
+        </div>
+        <ul class="contact-list">
+          <li><span>GitHub</span><a href="https://github.com/your-username" target="_blank" rel="noopener">github.com/your-username</a></li>
+          <li><span>微信</span><em>加我请先发邮件</em></li>
+          <li><span>位置</span><em>上海 · 可远程</em></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© <span id="year">2026</span> 张明</p>
+      <p>原生 HTML / CSS / JavaScript 写成，托管在 GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
