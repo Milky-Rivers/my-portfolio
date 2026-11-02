@@ -2003,6 +2003,12 @@
     resizeCanvas();
     setScreen("menu");
     requestAnimationFrame(frame);
+
+    const playMode = new URLSearchParams(window.location.search).get("play");
+    if (playMode !== null) {
+      if (playMode === "endless") startEndless();
+      else startClassic();
+    }
   }
 
   window.__foldDashDebug = {
