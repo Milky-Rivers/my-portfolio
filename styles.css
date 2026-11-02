@@ -340,6 +340,16 @@ h1 {
   font-size: 11px;
   font-weight: 600;
 }
+.badge--game {
+  border-color: #edcfdf;
+  background: #fff0f7;
+  color: #a1245d;
+}
+.badge--stack {
+  border-color: #cbdcef;
+  background: #edf5fd;
+  color: #215b8f;
+}
 
 .project-body p {
   margin: 0;

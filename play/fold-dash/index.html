@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="折线冲刺：按住上升、松开下降的横屏几何跑酷游戏，可离线游玩。"
+    />
+    <title>折线冲刺 · Fold Dash</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app" class="app" data-screen="menu">
+      <canvas id="gameCanvas" aria-label="折线冲刺游戏画面"></canvas>
+      <div class="screen-vignette" aria-hidden="true"></div>
+      <div id="focusWash" class="focus-wash" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <button id="brandButton" class="brand" type="button" aria-label="返回主菜单">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 44 44">
+              <path d="M5 34 17 22l7 7L39 8l-5 22-12 6-9-7Z" />
+              <path d="M5 34 17 22l7 7L39 8" />
+            </svg>
+          </span>
+          <span class="brand-type">
+            <strong>折线冲刺</strong>
+            <small>FOLD / DASH</small>
+          </span>
+        </button>
+
+        <div class="top-actions">
+          <button id="soundButton" class="icon-button" type="button" aria-label="关闭声音">
+            <svg class="icon" aria-hidden="true"><use href="#icon-volume"></use></svg>
+          </button>
+          <button id="fullscreenButton" class="icon-button" type="button" aria-label="进入全屏">
+            <svg class="icon" aria-hidden="true"><use href="#icon-maximize"></use></svg>
+          </button>
+        </div>
+      </header>
+
+      <section id="menuScreen" class="menu-screen" aria-labelledby="gameTitle">
+        <div class="menu-copy">
+          <p class="eyebrow"><span class="pulse-dot"></span>LOCAL ARCADE / 001</p>
+          <h1 id="gameTitle">折线<span>冲刺</span></h1>
+          <p class="lede">
+            一根手指，划出你的极限路线。在尖刺、齿轮与狭窄通道之间，找到唯一的呼吸节奏。
+          </p>
+
+          <div class="menu-record">
+            <div>
+              <span>最长航线</span>
+              <strong id="longestDistance">0<small>m</small></strong>
+            </div>
+            <span class="record-rule"></span>
+            <div>
+              <span>已贯通</span>
+              <strong id="clearedLevels">0<small>/3</small></strong>
+            </div>
+          </div>
+
+          <div class="control-legend" aria-label="操作方式">
+            <span><kbd>按住</kbd> 上升</span>
+            <span><kbd>松开</kbd> 下降</span>
+            <span><kbd>Shift</kbd> 时缓</span>
+          </div>
+        </div>
+
+        <div class="route-board">
+          <div class="board-heading">
+            <div>
+              <span class="section-number">SELECT ROUTE</span>
+              <h2>选择航线</h2>
+            </div>
+            <span id="routeStatus" class="route-status">系统就绪</span>
+          </div>
+
+          <article class="mode-card mode-card--classic">
+            <div class="mode-topline">
+              <span class="mode-index">01</span>
+              <span class="mode-kind">CLASSIC</span>
+            </div>
+            <div class="mode-copy">
+              <h3>经典模式</h3>
+              <p>穿越三段手工航线，抵达每一道终点门。</p>
+            </div>
+            <div id="levelPicker" class="level-picker" aria-label="选择经典模式关卡"></div>
+            <button id="startClassicButton" class="launch-button" type="button">
+              <span id="classicButtonLabel">开始航线</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </button>
+          </article>
+
+          <article class="mode-card mode-card--endless">
+            <div class="mode-topline">
+              <span class="mode-index">∞</span>
+              <span class="mode-kind">ENDLESS</span>
+            </div>
+            <div class="endless-mark" aria-hidden="true">
+              <svg viewBox="0 0 120 48">
+                <path d="M4 37c15-31 31 12 47-9s34-23 65 8" />
+                <path d="m101 21 15 15-20 7" />
+              </svg>
+            </div>
+            <div class="mode-copy">
+              <h3>无尽冲刺</h3>
+              <p>程序生成的无尽空间，航线会越来越快。</p>
+            </div>
+            <div class="endless-record">
+              <span>本机纪录</span>
+              <strong id="endlessRecord">0<small>m</small></strong>
+            </div>
+            <button id="startEndlessButton" class="launch-button" type="button">
+              <span>进入无尽空间</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section id="hud" class="hud is-hidden" aria-label="游戏状态">
+        <button id="pauseButton" class="hud-button pause-button" type="button" aria-label="暂停游戏">
+          <svg class="icon" aria-hidden="true"><use href="#icon-pause"></use></svg>
+        </button>
+
+        <div class="run-readout">
+          <span id="modeLabel">霓虹初折</span>
+          <strong id="distanceText"><span id="distanceValue">0</span><small>m</small></strong>
+        </div>
+
+        <div class="run-best">
+          <span>BEST</span>
+          <strong id="bestText">0m</strong>
+        </div>
+
+        <div class="progress-line" aria-hidden="true">
+          <span id="progressFill"></span>
+          <i id="progressMarker"></i>
+        </div>
+
+        <button id="focusButton" class="focus-button" type="button" aria-label="启动时缓">
+          <svg class="icon" aria-hidden="true"><use href="#icon-timer"></use></svg>
+          <span id="focusCount">2</span>
+          <small>SHIFT</small>
+        </button>
+
+        <div id="controlCue" class="control-cue" aria-hidden="true">
+          <span>按住上升</span>
+          <i></i>
+          <span>松开下降</span>
+        </div>
+
+        <div id="launchPrompt" class="launch-prompt" aria-hidden="true">
+          <span>HOLD TO LAUNCH</span>
+          <strong>按住起飞</strong>
+        </div>
+
+        <div id="speedReadout" class="speed-readout" aria-hidden="true">
+          <span>VELOCITY</span>
+          <strong>1.0×</strong>
+        </div>
+      </section>
+
+      <div id="portraitHint" class="portrait-hint">横屏体验更佳</div>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <section id="overlay" class="overlay is-hidden" aria-live="polite">
+        <div class="overlay-panel" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+          <div class="overlay-signal" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <p id="overlayEyebrow" class="eyebrow">ROUTE PAUSED</p>
+          <h2 id="overlayTitle">航线暂停</h2>
+          <p id="overlayMessage" class="overlay-message"></p>
+          <div id="resultStats" class="result-stats is-hidden">
+            <div>
+              <span>距离</span>
+              <strong id="resultDistance">0m</strong>
+            </div>
+            <div>
+              <span>用时</span>
+              <strong id="resultTime">00:00</strong>
+            </div>
+            <div>
+              <span>晶片</span>
+              <strong id="resultPickups">0</strong>
+            </div>
+          </div>
+          <div class="overlay-actions">
+            <button id="primaryAction" class="launch-button" type="button">
+              <span>继续航行</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </button>
+            <button id="secondaryAction" class="ghost-button" type="button">退出航线</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="liveRegion" class="sr-only" aria-live="assertive"></div>
+    </main>
+
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-volume" viewBox="0 0 24 24">
+        <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+      </symbol>
+      <symbol id="icon-volume-x" viewBox="0 0 24 24">
+        <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
+        <path d="m22 9-6 6"></path>
+        <path d="m16 9 6 6"></path>
+      </symbol>
+      <symbol id="icon-maximize" viewBox="0 0 24 24">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+        <path d="M16 3h3a2 2 0 0 1 2 2v3"></path>
+        <path d="M8 21H5a2 2 0 0 1-2-2v-3"></path>
+        <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+      </symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24">
+        <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+        <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+      </symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24">
+        <path d="m7 4 13 8-13 8V4Z"></path>
+      </symbol>
+      <symbol id="icon-timer" viewBox="0 0 24 24">
+        <path d="M10 2h4"></path>
+        <path d="M12 14v-4"></path>
+        <circle cx="12" cy="14" r="8"></circle>
+        <path d="m9 2 3 4 3-4"></path>
+      </symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+        <path d="M5 12h14"></path>
+        <path d="m13 6 6 6-6 6"></path>
+      </symbol>
+      <symbol id="icon-rotate" viewBox="0 0 24 24">
+        <path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path>
+        <path d="M3 3v5h5"></path>
+      </symbol>
+    </svg>
+
+    <script src="game.js" defer></script>
+  </body>
+</html>
