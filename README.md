@@ -56,10 +56,11 @@ git commit -m "feat: 这次改了什么"
 git push
 ```
 
-正式站点运行在腾讯云轻量应用服务器 `43.142.94.139`，网站目录为
-`/var/www/milky-river`，Caddy 配置文件见 `deploy/Caddyfile`。
+正式站点部署在 Vercel，自定义域名为 `milky-river.cn`。源码推送到 GitHub
+后也可以在本地执行 `vercel --prod` 更新线上版本。
 
-更新文件后运行部署脚本：
+腾讯云轻量服务器仍保留为备份环境，网站目录为 `/var/www/milky-river`，
+Caddy 配置文件见 `deploy/Caddyfile`。同步到备用服务器可运行：
 
 ```powershell
 .\deploy\update.cmd
