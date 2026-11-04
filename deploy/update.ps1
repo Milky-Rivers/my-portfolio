@@ -28,12 +28,17 @@ foreach ($item in $items) {
 }
 
 scp @sshOptions (Join-Path $PSScriptRoot "Caddyfile") "$remote`:/home/ubuntu/Caddyfile"
+scp @sshOptions (Join-Path $PSScriptRoot "sshd_hardening.conf") "$remote`:/home/ubuntu/sshd_hardening.conf"
 
 ssh @sshOptions $remote @"
 sudo rsync -a --delete $remoteStage/ /var/www/milky-river/
 sudo install -m 644 /home/ubuntu/Caddyfile /etc/caddy/Caddyfile
+sudo install -m 644 /home/ubuntu/sshd_hardening.conf /etc/ssh/sshd_config.d/00-hardening.conf
+sudo rm -f /etc/ssh/sshd_config.d/99-hardening.conf
 sudo caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+sudo sshd -t
 sudo systemctl reload caddy
+sudo systemctl reload ssh
 sudo systemctl is-active caddy
 "@
 
