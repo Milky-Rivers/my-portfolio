@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/planner",
+      "destination": "https://planner.milky-river.cn/",
+      "permanent": false
+    },
+    {
+      "source": "/planner/",
+      "destination": "https://planner.milky-river.cn/",
+      "permanent": false
+    },
+    {
+      "source": "/planner/:path*",
+      "destination": "https://planner.milky-river.cn/:path*",
+      "permanent": false
+    }
+  ]
+}
