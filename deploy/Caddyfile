@@ -1,11 +1,25 @@
 milky-river.cn, www.milky-river.cn {
-	root * /var/www/milky-river
 	encode zstd gzip
-	file_server
 
 	header {
 		X-Content-Type-Options "nosniff"
 		Referrer-Policy "strict-origin-when-cross-origin"
 		X-Frame-Options "SAMEORIGIN"
+	}
+
+	redir /planner /planner/ 308
+
+	handle /planner/* {
+		uri strip_prefix /planner
+		reverse_proxy 127.0.0.1:3000
+	}
+
+	handle /api/* {
+		reverse_proxy 127.0.0.1:3000
+	}
+
+	handle {
+		root * /var/www/milky-river
+		file_server
 	}
 }
