@@ -2,9 +2,9 @@
 
 一个零依赖、零构建的个人作品集，集中展示网页应用、全栈工具和互动游戏。
 
-- 线上地址：https://milky-rivers.github.io/my-portfolio/
+- 线上地址：https://milky-river.cn/
 - 源码地址：https://github.com/Milky-Rivers/my-portfolio
-- 技术栈：HTML / CSS / 原生 JavaScript，部署在 GitHub Pages
+- 技术栈：HTML / CSS / 原生 JavaScript，部署在腾讯云轻量服务器，由 Caddy 自动管理 HTTPS
 
 ![首页截图](assets/site-shot.png)
 
@@ -56,7 +56,16 @@ git commit -m "feat: 这次改了什么"
 git push
 ```
 
-仓库走 GitHub Pages 的 `Deploy from a branch`（`main` 分支、根目录），推到 `main` 后会**自动重新构建**，大约 1 分钟生效，不需要手动点任何按钮。
+正式站点运行在腾讯云轻量应用服务器 `43.142.94.139`，网站目录为
+`/var/www/milky-river`，Caddy 配置文件见 `deploy/Caddyfile`。
+
+更新文件后运行部署脚本：
+
+```powershell
+.\deploy\update.cmd
+```
+
+GitHub 仓库仍作为源码备份使用。
 
 ## 一些说明
 
